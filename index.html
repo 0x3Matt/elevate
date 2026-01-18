@@ -545,11 +545,24 @@
     }
 
     .show-image {
-      height: 160px;
+      height: 180px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      background: var(--dark-elevated);
+    }
+
+    .show-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .show-card:hover .show-image img {
+      transform: scale(1.1);
     }
 
     .show-live-badge {
@@ -1091,7 +1104,8 @@
       <div class="shows-grid">
         <!-- Music Shows -->
         <div class="show-card" data-category="music">
-          <div class="show-image music-bg">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=400&h=300&fit=crop" alt="HEAD TO HEAD">
             <span class="show-live-badge">LIVE</span>
           </div>
           <div class="show-content">
@@ -1109,7 +1123,9 @@
         </div>
 
         <div class="show-card" data-category="music">
-          <div class="show-image weekend-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop" alt="WEEKEND WARMUP">
+          </div>
           <div class="show-content">
             <span class="show-category">Music</span>
             <h3 class="show-title">WEEKEND WARMUP</h3>
@@ -1125,7 +1141,9 @@
         </div>
 
         <div class="show-card" data-category="music">
-          <div class="show-image club-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=400&h=300&fit=crop" alt="CLUB NIGHT">
+          </div>
           <div class="show-content">
             <span class="show-category">Music</span>
             <h3 class="show-title">CLUB NIGHT</h3>
@@ -1142,7 +1160,9 @@
 
         <!-- Politics Shows -->
         <div class="show-card" data-category="politics">
-          <div class="show-image politics-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=300&fit=crop" alt="GLOBAL PULSE">
+          </div>
           <div class="show-content">
             <span class="show-category">Politics</span>
             <h3 class="show-title">GLOBAL PULSE</h3>
@@ -1158,7 +1178,9 @@
         </div>
 
         <div class="show-card" data-category="politics">
-          <div class="show-image africa-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=400&h=300&fit=crop" alt="AFRICA RISING">
+          </div>
           <div class="show-content">
             <span class="show-category">Politics</span>
             <h3 class="show-title">AFRICA RISING</h3>
@@ -1175,7 +1197,8 @@
 
         <!-- Tech Shows -->
         <div class="show-card" data-category="tech">
-          <div class="show-image tech-bg">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=300&fit=crop" alt="TECH TALK">
             <span class="show-new-badge">NEW</span>
           </div>
           <div class="show-content">
@@ -1193,7 +1216,9 @@
         </div>
 
         <div class="show-card" data-category="tech">
-          <div class="show-image crypto-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=300&fit=crop" alt="CRYPTO CORNER">
+          </div>
           <div class="show-content">
             <span class="show-category">Tech</span>
             <h3 class="show-title">CRYPTO CORNER</h3>
@@ -1209,7 +1234,9 @@
         </div>
 
         <div class="show-card" data-category="tech">
-          <div class="show-image startup-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop" alt="STARTUP STORIES">
+          </div>
           <div class="show-content">
             <span class="show-category">Tech</span>
             <h3 class="show-title">STARTUP STORIES</h3>
@@ -1226,7 +1253,9 @@
 
         <!-- Sports Shows -->
         <div class="show-card" data-category="sports">
-          <div class="show-image sports-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop" alt="GAME TIME">
+          </div>
           <div class="show-content">
             <span class="show-category">Sports</span>
             <h3 class="show-title">GAME TIME</h3>
@@ -1242,7 +1271,9 @@
         </div>
 
         <div class="show-card" data-category="sports">
-          <div class="show-image basketball-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop" alt="HOOP DREAMS">
+          </div>
           <div class="show-content">
             <span class="show-category">Sports</span>
             <h3 class="show-title">HOOP DREAMS</h3>
@@ -1259,7 +1290,9 @@
 
         <!-- Culture Shows -->
         <div class="show-card" data-category="culture">
-          <div class="show-image culture-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=300&fit=crop" alt="CULTURE CODE">
+          </div>
           <div class="show-content">
             <span class="show-category">Culture</span>
             <h3 class="show-title">CULTURE CODE</h3>
@@ -1275,7 +1308,9 @@
         </div>
 
         <div class="show-card" data-category="culture">
-          <div class="show-image lifestyle-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&h=300&fit=crop" alt="LIFESTYLE LOUNGE">
+          </div>
           <div class="show-content">
             <span class="show-category">Culture</span>
             <h3 class="show-title">LIFESTYLE LOUNGE</h3>
@@ -1291,7 +1326,9 @@
         </div>
 
         <div class="show-card" data-category="culture">
-          <div class="show-image stories-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1590845947698-8924d7409b56?w=400&h=300&fit=crop" alt="AFRICAN STORIES">
+          </div>
           <div class="show-content">
             <span class="show-category">Culture</span>
             <h3 class="show-title">AFRICAN STORIES</h3>
@@ -1308,7 +1345,9 @@
 
         <!-- Travel Shows -->
         <div class="show-card" data-category="travel">
-          <div class="show-image travel-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop" alt="WANDERLUST">
+          </div>
           <div class="show-content">
             <span class="show-category">Travel</span>
             <h3 class="show-title">WANDERLUST</h3>
@@ -1324,7 +1363,9 @@
         </div>
 
         <div class="show-card" data-category="travel">
-          <div class="show-image safari-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=400&h=300&fit=crop" alt="SAFARI DIARIES">
+          </div>
           <div class="show-content">
             <span class="show-category">Travel</span>
             <h3 class="show-title">SAFARI DIARIES</h3>
@@ -1340,7 +1381,9 @@
         </div>
 
         <div class="show-card" data-category="travel">
-          <div class="show-image backpack-bg"></div>
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=400&h=300&fit=crop" alt="BUDGET BACKPACKER">
+          </div>
           <div class="show-content">
             <span class="show-category">Travel</span>
             <h3 class="show-title">BUDGET BACKPACKER</h3>
