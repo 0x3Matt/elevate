@@ -1,0 +1,24 @@
+0 verbose cli /usr/local/Cellar/node/24.3.0/bin/node /usr/local/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.4.2
+2 info using node@v24.3.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/matt/elevate/.npmrc
+5 silly config load:file:/Users/matt/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm exec vercel --yes --prod
+8 verbose argv "exec" "--" "vercel" "--yes" "--prod"
+9 verbose logfile logs-max:10 dir:/Users/matt/elevate/.npm-cache/_logs/2026-01-18T20_55_43_200Z-
+10 verbose logfile /Users/matt/elevate/.npm-cache/_logs/2026-01-18T20_55_43_200Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 401ms
+13 verbose cwd /Users/matt/elevate
+14 verbose os Darwin 25.0.0
+15 verbose node v24.3.0
+16 verbose npm  v11.4.2
+17 notice
+17 notice New minor version of npm available! 11.4.2 -> 11.7.0
+17 notice Changelog: https://github.com/npm/cli/releases/tag/v11.7.0
+17 notice To update run: npm install -g npm@11.7.0
+17 notice  { force: true, Symbol(proc-log.meta): true }
+18 verbose exit 0
+19 info ok
