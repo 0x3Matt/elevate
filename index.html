@@ -1,38 +1,30 @@
 <!--
-  Digital Radio App - Elevate
-  Created: 2026-01-18
-  A modern digital radio interface inspired by contemporary streaming designs
-  Features: Live radio, favorites, similar broadcasts, now playing controls
+  Elevate Radio - Worldwide
+  Updated: 2026-01-18
+  Full website redesign with hot pink branding
+  24 HRS MUSIC • ZERO TALK
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elevate Radio</title>
+  <title>Elevate Radio | 24 HRS MUSIC • ZERO TALK</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --deep-navy: #0a1628;
-      --navy-gradient: linear-gradient(135deg, #0a1628 0%, #152238 100%);
-      --bg-light: #f0f2f5;
-      --card-white: #ffffff;
-      --text-primary: #1a1a2e;
-      --text-secondary: #6b7280;
-      --text-muted: #9ca3af;
-      --accent-coral: #ff6b5b;
-      --accent-blue: #4f46e5;
-      --accent-teal: #14b8a6;
-      --accent-amber: #f59e0b;
-      --border-light: rgba(0, 0, 0, 0.06);
-      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-      --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
+      --pink-primary: #E91E8C;
+      --pink-dark: #C4177A;
+      --pink-light: #FF4DA6;
+      --pink-glow: rgba(233, 30, 140, 0.5);
+      --dark-bg: #0a0a0a;
+      --dark-card: #141414;
+      --dark-elevated: #1a1a1a;
+      --white: #ffffff;
+      --white-muted: rgba(255, 255, 255, 0.7);
+      --white-subtle: rgba(255, 255, 255, 0.4);
     }
 
     * {
@@ -41,923 +33,938 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(145deg, #e8eaed 0%, #d1d5db 100%);
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark-bg);
+      color: var(--white);
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
+      overflow-x: hidden;
     }
 
-    .phone-container {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .phone {
-      width: 380px;
-      height: 780px;
-      background: var(--card-white);
-      border-radius: 45px;
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       overflow: hidden;
-      box-shadow: var(--shadow-medium), 0 0 0 1px rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+    }
+
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 80%, var(--pink-glow) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(233, 30, 140, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(255, 77, 166, 0.2) 0%, transparent 30%);
+      animation: bgPulse 15s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-5%, 5%) scale(1.1); }
+      66% { transform: translate(5%, -5%) scale(0.95); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 0 30px var(--pink-glow);
+    }
+
+    .logo-text {
       display: flex;
       flex-direction: column;
     }
 
-    /* Header Section */
-    .header {
-      background: var(--navy-gradient);
-      padding: 40px 24px 70px;
-      position: relative;
-      flex-shrink: 0;
+    .logo-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 3px;
+      line-height: 1;
     }
 
-    .header-top {
+    .logo-tagline {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--white-muted);
+      text-transform: uppercase;
+    }
+
+    nav {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      gap: 40px;
+      align-items: center;
     }
 
-    .station-info {
-      color: white;
-    }
-
-    .station-counter {
-      font-size: 14px;
-      opacity: 0.7;
-      margin-bottom: 4px;
+    nav a {
+      color: var(--white-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
     }
 
-    .station-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      letter-spacing: -0.5px;
+    nav a:hover {
+      color: var(--pink-primary);
     }
 
-    .station-favorites {
-      font-size: 14px;
-      opacity: 0.6;
-    }
-
-    .header-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+    .nav-live {
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .header-icon:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .header-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: white;
-      opacity: 0.8;
-    }
-
-    .user-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-coral) 0%, #ff8a7a 100%);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .user-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Content Section */
-    .content {
-      flex: 1;
-      background: var(--bg-light);
-      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-      margin-top: -40px;
-      position: relative;
-      overflow-y: auto;
-      padding: 0 20px 30px;
-    }
-
-    /* Now Playing Card */
-    .now-playing-card {
-      background: var(--card-white);
-      border-radius: var(--radius-lg);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: var(--shadow-soft);
-      margin-top: -20px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .now-playing-art {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .now-playing-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .now-playing-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .now-playing-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .now-playing-label {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .now-playing-controls {
-      display: flex;
       gap: 8px;
+      color: var(--pink-primary) !important;
     }
 
-    .control-btn {
-      width: 40px;
-      height: 40px;
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--pink-primary);
       border-radius: 50%;
-      border: none;
-      cursor: pointer;
+      animation: livePulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--pink-glow); }
+      50% { opacity: 0.5; box-shadow: 0 0 0 8px transparent; }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      transition: all 0.2s ease;
+      align-items: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      z-index: 1;
     }
 
-    .control-btn.play {
-      background: var(--accent-blue);
+    .hero-badge {
+      background: var(--pink-primary);
       color: white;
-    }
-
-    .control-btn.play:hover {
-      background: #4338ca;
-      transform: scale(1.05);
-    }
-
-    .control-btn.secondary {
-      background: var(--bg-light);
-      color: var(--text-secondary);
-    }
-
-    .control-btn.secondary:hover {
-      background: #e5e7eb;
-    }
-
-    .control-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* Host Section */
-    .host-section {
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 20px 0;
+      gap: 10px;
     }
 
-    .host-avatar {
-      width: 44px;
-      height: 44px;
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: white;
       border-radius: 50%;
-      overflow: hidden;
+      animation: livePulse 1.5s ease-in-out infinite;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 12vw, 140px);
+      line-height: 0.9;
+      letter-spacing: 8px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, var(--white) 0%, var(--pink-light) 50%, var(--pink-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--white-muted);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+
+    .hero-slogan {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 6px;
+      color: var(--pink-primary);
+      margin-bottom: 50px;
+    }
+
+    /* Listen Button */
+    .listen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      color: white;
+      padding: 20px 50px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 40px var(--pink-glow);
+      transition: all 0.3s ease;
       position: relative;
+      overflow: hidden;
     }
 
-    .host-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .host-avatar::before {
+    .listen-btn::before {
       content: '';
       position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .listen-btn:hover::before {
+      left: 100%;
+    }
+
+    .listen-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 20px 60px var(--pink-glow);
+    }
+
+    .listen-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Sound Wave Animation */
+    .sound-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 24px;
+    }
+
+    .sound-wave span {
+      width: 4px;
+      background: white;
+      border-radius: 2px;
+      animation: soundWave 1s ease-in-out infinite;
+    }
+
+    .sound-wave span:nth-child(1) { height: 8px; animation-delay: 0s; }
+    .sound-wave span:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+    .sound-wave span:nth-child(3) { height: 24px; animation-delay: 0.2s; }
+    .sound-wave span:nth-child(4) { height: 16px; animation-delay: 0.3s; }
+    .sound-wave span:nth-child(5) { height: 8px; animation-delay: 0.4s; }
+
+    @keyframes soundWave {
+      0%, 100% { transform: scaleY(0.5); }
+      50% { transform: scaleY(1); }
+    }
+
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-top: 80px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--pink-primary);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--white-subtle);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 100px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--dark-card);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--pink-primary);
+      box-shadow: 0 20px 60px rgba(233, 30, 140, 0.2);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .feature-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      color: var(--white-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Shows Section */
+    .shows {
+      padding: 100px 40px;
+      background: var(--dark-card);
+      position: relative;
+      z-index: 1;
+    }
+
+    .shows-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .show-card {
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      border-radius: 24px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .show-card:hover {
+      transform: scale(1.03);
+    }
+
+    .show-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .show-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .show-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .show-time {
+      font-size: 14px;
+      opacity: 0.9;
+      position: relative;
+    }
+
+    .show-vs {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      opacity: 0.3;
+    }
+
+    /* Player Section */
+    .player-section {
+      padding: 100px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .player-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--dark-card);
+      border-radius: 30px;
+      padding: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+    }
+
+    .player-art {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
       border-radius: 50%;
-      border: 2px dashed var(--accent-blue);
-      animation: rotate 10s linear infinite;
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px var(--pink-glow);
+      animation: rotate 20s linear infinite;
+      position: relative;
+    }
+
+    .player-art::before {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: var(--dark-card);
+      border-radius: 50%;
     }
 
     @keyframes rotate {
       to { transform: rotate(360deg); }
     }
 
-    .host-info {
-      flex: 1;
+    .player-art.paused {
+      animation-play-state: paused;
     }
 
-    .host-name {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-primary);
-    }
-
-    .host-label {
+    .now-playing-label {
       font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .host-badges {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .badge.live {
-      background: var(--accent-coral);
-      color: white;
-    }
-
-    .badge.live::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .badge.viewers {
-      background: var(--bg-light);
-      color: var(--text-secondary);
-    }
-
-    .badge.viewers svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* Section Headers */
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      margin-top: 8px;
-    }
-
-    .section-title {
-      font-weight: 600;
-      font-size: 17px;
-      color: var(--text-primary);
-    }
-
-    .section-link {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .section-link:hover {
-      color: var(--accent-blue);
-    }
-
-    /* Broadcast Grid */
-    .broadcast-grid {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 20px;
-      scrollbar-width: none;
-    }
-
-    .broadcast-grid::-webkit-scrollbar {
-      display: none;
-    }
-
-    .broadcast-card {
-      flex-shrink: 0;
-      width: 100px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .broadcast-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .broadcast-art {
-      width: 100px;
-      height: 100px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+      color: var(--pink-primary);
+      letter-spacing: 3px;
+      text-transform: uppercase;
       margin-bottom: 10px;
-      box-shadow: var(--shadow-soft);
     }
 
-    .broadcast-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .now-playing-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
     }
 
-    .broadcast-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .now-playing-artist {
+      color: var(--white-muted);
+      font-size: 16px;
+      margin-bottom: 40px;
     }
 
-    .broadcast-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* Popular Section */
-    .popular-grid {
+    .player-controls {
       display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: none;
-    }
-
-    .popular-grid::-webkit-scrollbar {
-      display: none;
-    }
-
-    .popular-card {
-      flex-shrink: 0;
-      width: 150px;
-      height: 150px;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      box-shadow: var(--shadow-soft);
-      transition: transform 0.2s;
-    }
-
-    .popular-card:hover {
-      transform: scale(1.03);
-    }
-
-    .popular-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .popular-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 12px;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-      color: white;
-    }
-
-    .popular-name {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* Favorites List */
-    .favorites-section {
-      margin-top: 20px;
-    }
-
-    .favorites-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .favorite-item {
-      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 14px;
-      padding: 10px 0;
+      gap: 30px;
+    }
+
+    .control-btn {
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: 2px solid var(--white-subtle);
+      border-radius: 50%;
+      color: var(--white-muted);
       cursor: pointer;
-      border-radius: var(--radius-sm);
-      transition: background 0.2s;
-    }
-
-    .favorite-item:hover {
-      background: rgba(0, 0, 0, 0.03);
-      margin: 0 -10px;
-      padding: 10px;
-    }
-
-    .favorite-art {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .favorite-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .favorite-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .favorite-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-primary);
-      margin-bottom: 3px;
-    }
-
-    .favorite-artist {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .favorite-duration {
-      font-size: 13px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    /* Album Art Placeholder Styles */
-    .art-placeholder {
-      width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .control-btn:hover {
+      border-color: var(--pink-primary);
+      color: var(--pink-primary);
+    }
+
+    .control-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      border: none;
       color: white;
-      font-size: 12px;
+      box-shadow: 0 10px 40px var(--pink-glow);
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      color: white;
+    }
+
+    .play-btn svg {
+      width: 32px;
+      height: 32px;
+      margin-left: 4px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 40px;
+      background: var(--dark-card);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      background: var(--dark-elevated);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-muted);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--pink-primary);
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
-      padding: 8px;
-    }
-
-    .art-teal {
-      background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #5eead4 100%);
-    }
-
-    .art-geometric {
-      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
-      position: relative;
-    }
-
-    .art-geometric::after {
-      content: '';
-      position: absolute;
-      width: 60%;
-      height: 60%;
-      background: linear-gradient(45deg, #fbbf24 0%, #f59e0b 100%);
-      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      top: 20%;
-      left: 20%;
-    }
-
-    .art-sunset {
-      background: linear-gradient(180deg, #0ea5e9 0%, #f97316 50%, #dc2626 100%);
-    }
-
-    .art-amber {
-      background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%);
-    }
-
-    .art-purple {
-      background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-    }
-
-    .art-ocean {
-      background: linear-gradient(180deg, #06b6d4 0%, #0891b2 50%, #164e63 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .art-retro {
-      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-      font-family: 'Playfair Display', serif;
-      font-size: 10px;
-      letter-spacing: 1px;
-    }
-
-    .art-waves {
-      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-    }
-
-    /* Scrollbar for content */
-    .content::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .content::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .content::-webkit-scrollbar-thumb {
-      background: var(--border-light);
-      border-radius: 2px;
+      color: var(--white-subtle);
+      font-size: 13px;
     }
 
     /* Responsive */
-    @media (max-width: 840px) {
-      .phone-container {
-        gap: 30px;
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
       }
-      
-      .phone {
-        width: 360px;
-        height: 720px;
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+        letter-spacing: 4px;
+      }
+
+      .hero-slogan {
+        font-size: 20px;
+        letter-spacing: 4px;
+      }
+
+      .stats {
+        gap: 40px;
+      }
+
+      .features, .shows, .player-section {
+        padding: 60px 20px;
+      }
+
+      .player-container {
+        padding: 30px;
+      }
+
+      .player-art {
+        width: 150px;
+        height: 150px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
       }
     }
 
-    @media (max-width: 400px) {
-      body {
-        padding: 0;
-      }
-      
-      .phone {
-        width: 100%;
-        height: 100vh;
-        border-radius: 0;
-      }
+    /* Mobile menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
     }
 
-    /* Animation for loading */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
       }
     }
-
-    .broadcast-card, .popular-card, .favorite-item {
-      animation: fadeInUp 0.5s ease forwards;
-    }
-
-    .broadcast-card:nth-child(1) { animation-delay: 0.1s; }
-    .broadcast-card:nth-child(2) { animation-delay: 0.15s; }
-    .broadcast-card:nth-child(3) { animation-delay: 0.2s; }
-    .broadcast-card:nth-child(4) { animation-delay: 0.25s; }
-
-    .favorite-item:nth-child(1) { animation-delay: 0.1s; }
-    .favorite-item:nth-child(2) { animation-delay: 0.15s; }
-    .favorite-item:nth-child(3) { animation-delay: 0.2s; }
-    .favorite-item:nth-child(4) { animation-delay: 0.25s; }
   </style>
 </head>
 <body>
-  <div class="phone-container">
-    <!-- Phone 1 - Main Radio View -->
-    <div class="phone">
-      <div class="header">
-        <div class="header-top">
-          <div class="station-info">
-            <div class="station-counter">25/30</div>
-            <h1 class="station-name">Radio 160</h1>
-            <div class="station-favorites">115K+ favourite</div>
-          </div>
-          <div class="header-icon">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-          </div>
-        </div>
-      </div>
+  <div class="bg-animation"></div>
 
-      <div class="content">
-        <div class="now-playing-card">
-          <div class="now-playing-art">
-            <div class="art-placeholder art-sunset"></div>
-          </div>
-          <div class="now-playing-info">
-            <div class="now-playing-title">Best 15 rock</div>
-            <div class="now-playing-label">Now Playing</div>
-          </div>
-          <div class="now-playing-controls">
-            <button class="control-btn play" id="playBtn1">
-              <svg fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </button>
-            <button class="control-btn secondary">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="host-section">
-          <div class="host-avatar">
-            <div class="art-placeholder art-purple" style="font-size: 18px;">F</div>
-          </div>
-          <div class="host-info">
-            <div class="host-name">Faomi</div>
-            <div class="host-label">Hosted by</div>
-          </div>
-          <div class="host-badges">
-            <span class="badge live">On Live</span>
-            <span class="badge viewers">
-              <svg fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-              </svg>
-              1.1K
-            </span>
-          </div>
-        </div>
-
-        <div class="section-header">
-          <h2 class="section-title">Similar Broadcast</h2>
-          <a class="section-link">All</a>
-        </div>
-
-        <div class="broadcast-grid">
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-geometric"></div>
-            </div>
-            <div class="broadcast-name">Top 15 Rap</div>
-            <div class="broadcast-meta">115K+ Fav</div>
-          </div>
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-geometric" style="background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);">
-                <div style="position: absolute; width: 50%; height: 50%; background: linear-gradient(45deg, #facc15 0%, #eab308 100%); clip-path: polygon(0 0, 100% 0, 0 100%); top: 25%; left: 25%;"></div>
-              </div>
-            </div>
-            <div class="broadcast-name">Radio Mirchi</div>
-            <div class="broadcast-meta">115K+ Fav</div>
-          </div>
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-sunset"></div>
-            </div>
-            <div class="broadcast-name">SPB: Top 50</div>
-            <div class="broadcast-meta">1.8K Fav</div>
-          </div>
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-waves"></div>
-            </div>
-            <div class="broadcast-name">Chill Beats</div>
-            <div class="broadcast-meta">89K Fav</div>
-          </div>
-        </div>
-
-        <div class="section-header">
-          <h2 class="section-title">Popular</h2>
-          <a class="section-link">All</a>
-        </div>
-
-        <div class="popular-grid">
-          <div class="popular-card">
-            <div class="art-placeholder art-retro">RESTRICTED<br>AREA</div>
-          </div>
-          <div class="popular-card">
-            <div class="art-placeholder art-ocean"></div>
-          </div>
-          <div class="popular-card">
-            <div class="art-placeholder art-amber"></div>
-          </div>
-        </div>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">e</div>
+      <div class="logo-text">
+        <span class="logo-name">ELEVATE RADIO</span>
+        <span class="logo-tagline">Worldwide</span>
       </div>
     </div>
+    <nav>
+      <a href="#" class="nav-live"><span class="live-dot"></span> Live Now</a>
+      <a href="#shows">Shows</a>
+      <a href="#player">Listen</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+  </header>
 
-    <!-- Phone 2 - Favorites View -->
-    <div class="phone">
-      <div class="header">
-        <div class="header-top">
-          <div class="station-info">
-            <div class="station-counter">25/30</div>
-            <h1 class="station-name">Radio 160</h1>
-            <div class="station-favorites">115K+ favourite</div>
-          </div>
-          <div class="user-avatar">
-            <div class="art-placeholder art-sunset"></div>
-          </div>
+  <main>
+    <section class="hero">
+      <div class="hero-badge">On Air Now</div>
+      <h1 class="hero-title">
+        <span>ELEVATE</span>
+        <span>RADIO</span>
+      </h1>
+      <p class="hero-subtitle">Worldwide</p>
+      <p class="hero-slogan">24 HRS MUSIC • ZERO TALK</p>
+      
+      <a href="https://stream.zeno.fm/yn65fsaurfhvv" target="_blank" class="listen-btn" id="mainListenBtn">
+        <div class="sound-wave">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        Listen Live
+      </a>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">Non-Stop Music</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">115K+</div>
+          <div class="stat-label">Listeners</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50+</div>
+          <div class="stat-label">Countries</div>
         </div>
       </div>
+    </section>
 
-      <div class="content">
-        <div class="favorites-section" style="margin-top: 0; padding-top: 24px;">
-          <div class="section-header">
-            <h2 class="section-title">My favourite (24)</h2>
-            <a class="section-link">View all</a>
+    <section class="features">
+      <h2 class="section-title">Why Elevate Radio?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
           </div>
-
-          <div class="favorites-list">
-            <div class="favorite-item">
-              <div class="favorite-art">
-                <div class="art-placeholder art-waves"></div>
-              </div>
-              <div class="favorite-info">
-                <div class="favorite-title">Let me love you</div>
-                <div class="favorite-artist">Dj Snake ft JB</div>
-              </div>
-              <div class="favorite-duration">4:38</div>
-            </div>
-
-            <div class="favorite-item">
-              <div class="favorite-art">
-                <div class="art-placeholder art-geometric"></div>
-              </div>
-              <div class="favorite-info">
-                <div class="favorite-title">Believer</div>
-                <div class="favorite-artist">Major Lazer, Showtek</div>
-              </div>
-              <div class="favorite-duration">3:43</div>
-            </div>
-
-            <div class="favorite-item">
-              <div class="favorite-art">
-                <div class="art-placeholder art-purple"></div>
-              </div>
-              <div class="favorite-info">
-                <div class="favorite-title">Don't let me down</div>
-                <div class="favorite-artist">The Chainsmokers</div>
-              </div>
-              <div class="favorite-duration">4:38</div>
-            </div>
-
-            <div class="favorite-item">
-              <div class="favorite-art">
-                <div class="art-placeholder art-teal"></div>
-              </div>
-              <div class="favorite-info">
-                <div class="favorite-title">Let me love you</div>
-                <div class="favorite-artist">Dj Snake ft JB</div>
-              </div>
-              <div class="favorite-duration">4:38</div>
-            </div>
-          </div>
+          <h3 class="feature-title">Non-Stop Hits</h3>
+          <p class="feature-desc">24 hours of the best music from around the world. No interruptions, no talk shows—just pure music.</p>
         </div>
-
-        <div class="section-header" style="margin-top: 28px;">
-          <h2 class="section-title">Similar Broadcast</h2>
-          <a class="section-link">All</a>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <h3 class="feature-title">Curated Playlists</h3>
+          <p class="feature-desc">Expert DJs curate the perfect mix of genres—EDM, Hip-Hop, Pop, R&B, and more.</p>
         </div>
-
-        <div class="broadcast-grid">
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-geometric"></div>
-            </div>
-            <div class="broadcast-name">Top 15 Rap</div>
-            <div class="broadcast-meta">115K+ Fav</div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
           </div>
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-geometric" style="background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);">
-                <div style="position: absolute; width: 50%; height: 50%; background: linear-gradient(45deg, #facc15 0%, #eab308 100%); clip-path: polygon(0 0, 100% 0, 0 100%); top: 25%; left: 25%;"></div>
-              </div>
-            </div>
-            <div class="broadcast-name">Radio Mirchi</div>
-            <div class="broadcast-meta">115K+ Fav</div>
-          </div>
-          <div class="broadcast-card">
-            <div class="broadcast-art">
-              <div class="art-placeholder art-sunset"></div>
-            </div>
-            <div class="broadcast-name">SPB: Top 50</div>
-            <div class="broadcast-meta">1.8K Fav</div>
-          </div>
+          <h3 class="feature-title">Global Reach</h3>
+          <p class="feature-desc">Broadcasting to over 50 countries. Connect with music lovers worldwide.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="shows" id="shows">
+      <h2 class="section-title">Featured Shows</h2>
+      <div class="shows-grid">
+        <div class="show-card">
+          <span class="show-badge">Wednesdays</span>
+          <h3 class="show-title">HEAD TO HEAD</h3>
+          <p class="show-time">1:00 PM EAT</p>
+          <span class="show-vs">VS</span>
+        </div>
+        <div class="show-card">
+          <span class="show-badge">Fridays</span>
+          <h3 class="show-title">WEEKEND WARMUP</h3>
+          <p class="show-time">6:00 PM EAT</p>
+          <span class="show-vs">🔥</span>
+        </div>
+        <div class="show-card">
+          <span class="show-badge">Saturdays</span>
+          <h3 class="show-title">CLUB NIGHT</h3>
+          <p class="show-time">10:00 PM EAT</p>
+          <span class="show-vs">🎧</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="player-section" id="player">
+      <div class="player-container">
+        <div class="player-art" id="playerArt">
+          <svg width="60" height="60" fill="white" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+        </div>
+        <div class="now-playing-label">Now Playing</div>
+        <h3 class="now-playing-title">ELEVATE RADIO</h3>
+        <p class="now-playing-artist">Live Stream • Worldwide</p>
+        <div class="player-controls">
+          <button class="control-btn">
+            <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          <button class="control-btn play-btn" id="playBtn">
+            <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button class="control-btn">
+            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">e</div>
+        <div class="logo-text">
+          <span class="logo-name" style="font-size: 18px;">ELEVATE RADIO</span>
+          <span class="logo-tagline">www.elevateradio.co</span>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://twitter.com/ElevateRadioCo" target="_blank" class="social-link" aria-label="Twitter">
+          <svg viewBox="0 0 24 24"><path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.95-3.06 1.17-.88-.94-2.13-1.53-3.51-1.53-2.66 0-4.81 2.16-4.81 4.81 0 .38.04.75.13 1.1-4-.2-7.58-2.11-9.96-5.02-.42.72-.66 1.56-.66 2.46 0 1.68.85 3.16 2.14 4.02-.79-.02-1.53-.24-2.18-.6v.06c0 2.35 1.67 4.31 3.88 4.76-.4.1-.83.16-1.27.16-.31 0-.62-.03-.92-.08.63 1.96 2.45 3.39 4.61 3.43-1.69 1.32-3.83 2.1-6.15 2.1-.4 0-.8-.02-1.19-.07 2.19 1.4 4.78 2.22 7.57 2.22 9.07 0 14.02-7.52 14.02-14.02 0-.21 0-.43-.01-.64.96-.69 1.79-1.56 2.45-2.55z"/></svg>
+        </a>
+        <a href="https://facebook.com/ElevateRadioCo" target="_blank" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+        </a>
+        <a href="https://instagram.com/ElevateRadioCo" target="_blank" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.058-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.041 0 2.67.01 2.986.058 4.04.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058 2.67 0 2.987-.01 4.04-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041 0-2.67-.01-2.986-.058-4.04-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.055-.048-1.37-.058-4.041-.058zm0 3.063a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 8.468a3.333 3.333 0 100-6.666 3.333 3.333 0 000 6.666zm6.538-8.671a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
+        </a>
       </div>
     </div>
-  </div>
+    <div class="footer-bottom">
+      <p>© 2026 Elevate Radio Worldwide. All rights reserved. | @ElevateRadioCo</p>
+    </div>
+  </footer>
+
+  <audio id="radioStream" preload="none">
+    <source src="https://stream.zeno.fm/yn65fsaurfhvv" type="audio/mpeg">
+  </audio>
 
   <script>
-    // Play button toggle functionality
-    document.querySelectorAll('.control-btn.play').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const icon = this.querySelector('svg');
-        const isPlaying = this.classList.toggle('playing');
-        
-        if (isPlaying) {
-          icon.innerHTML = '<path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>';
-        } else {
-          icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-        }
-      });
-    });
+    // Audio Player
+    const audio = document.getElementById('radioStream');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const playerArt = document.getElementById('playerArt');
+    let isPlaying = false;
 
-    // Favorite item click handler
-    document.querySelectorAll('.favorite-item').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.favorite-item').forEach(i => i.style.background = '');
-        this.style.background = 'rgba(79, 70, 229, 0.08)';
-      });
-    });
-
-    // Broadcast card hover effect with sound wave animation
-    document.querySelectorAll('.broadcast-card, .popular-card').forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-6px) scale(1.02)';
-      });
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-      });
-    });
-
-    // Add ripple effect to buttons
-    document.querySelectorAll('.control-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        ripple.style.cssText = `
-          position: absolute;
-          background: rgba(255,255,255,0.3);
-          border-radius: 50%;
-          transform: scale(0);
-          animation: ripple 0.6s linear;
-          pointer-events: none;
-        `;
-        
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = e.clientX - rect.left - size/2 + 'px';
-        ripple.style.top = e.clientY - rect.top - size/2 + 'px';
-        
-        this.style.position = 'relative';
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-
-    // Add ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
+    playBtn.addEventListener('click', togglePlay);
+    document.getElementById('mainListenBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!isPlaying) {
+        togglePlay();
       }
-    `;
-    document.head.appendChild(style);
+      document.getElementById('player').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+        playerArt.classList.add('paused');
+      } else {
+        audio.play();
+        playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+        playerArt.classList.remove('paused');
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(10, 10, 10, 0.95)';
+      } else {
+        header.style.background = 'linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, transparent 100%)';
+      }
+    });
+
+    // Initialize player art as paused
+    playerArt.classList.add('paused');
   </script>
 </body>
 </html>
