@@ -476,13 +476,249 @@
       position: relative;
     }
 
-    .show-vs {
+    .section-subtitle {
+      text-align: center;
+      color: var(--white-muted);
+      font-size: 16px;
+      margin-top: -40px;
+      margin-bottom: 40px;
+    }
+
+    /* Category Filter */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--dark-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--white-muted);
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--pink-primary);
+      color: var(--pink-primary);
+    }
+
+    .filter-btn.active {
+      background: var(--pink-primary);
+      border-color: var(--pink-primary);
+      color: white;
+    }
+
+    /* Updated Show Cards */
+    .shows-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .show-card {
+      background: var(--dark-elevated);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .show-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--pink-primary);
+      box-shadow: 0 20px 40px rgba(233, 30, 140, 0.2);
+    }
+
+    .show-card.hidden {
+      display: none;
+    }
+
+    .show-image {
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .show-live-badge {
       position: absolute;
-      right: 30px;
-      bottom: 30px;
+      top: 12px;
+      left: 12px;
+      background: #ef4444;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+    .show-new-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--pink-primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Show Image Backgrounds */
+    .music-bg { background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%); }
+    .weekend-bg { background: linear-gradient(135deg, #f97316 0%, #eab308 100%); }
+    .club-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+    .politics-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+    .africa-bg { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    .tech-bg { background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%); }
+    .crypto-bg { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
+    .startup-bg { background: linear-gradient(135deg, #dc2626 0%, #f97316 100%); }
+    .sports-bg { background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%); }
+    .basketball-bg { background: linear-gradient(135deg, #ea580c 0%, #facc15 100%); }
+    .culture-bg { background: linear-gradient(135deg, #db2777 0%, #f472b6 100%); }
+    .lifestyle-bg { background: linear-gradient(135deg, #0d9488 0%, #5eead4 100%); }
+    .stories-bg { background: linear-gradient(135deg, #92400e 0%, #d97706 100%); }
+
+    .show-content {
+      padding: 20px;
+    }
+
+    .show-category {
+      display: inline-block;
+      background: rgba(233, 30, 140, 0.2);
+      color: var(--pink-primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .show-card .show-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
+      font-size: 24px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .show-desc {
+      color: var(--white-muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .show-meta {
+      margin-bottom: 16px;
+    }
+
+    .show-time {
+      font-size: 13px;
+      color: var(--white-subtle);
+    }
+
+    .show-host {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: var(--white-muted);
+    }
+
+    .host-avatar-small {
+      width: 32px;
+      height: 32px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .show-host strong {
+      color: white;
+    }
+
+    /* Host CTA */
+    .host-cta {
+      max-width: 800px;
+      margin: 60px auto 0;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .host-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       opacity: 0.3;
+    }
+
+    .host-cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .host-cta h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .host-cta p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .host-cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--pink-primary);
+      padding: 16px 40px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
+
+    .host-cta-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     /* Player Section */
@@ -836,24 +1072,243 @@
 
     <section class="shows" id="shows">
       <h2 class="section-title">Featured Shows</h2>
+      <p class="section-subtitle">24/7 Music + Talk Shows from creators worldwide</p>
+      
+      <!-- Category Filter -->
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all">All Shows</button>
+        <button class="filter-btn" data-category="music">Music</button>
+        <button class="filter-btn" data-category="politics">Politics</button>
+        <button class="filter-btn" data-category="tech">Tech</button>
+        <button class="filter-btn" data-category="sports">Sports</button>
+        <button class="filter-btn" data-category="culture">Culture</button>
+      </div>
+
       <div class="shows-grid">
-        <div class="show-card">
-          <span class="show-badge">Wednesdays</span>
-          <h3 class="show-title">HEAD TO HEAD</h3>
-          <p class="show-time">1:00 PM EAT</p>
-          <span class="show-vs">VS</span>
+        <!-- Music Shows -->
+        <div class="show-card" data-category="music">
+          <div class="show-image music-bg">
+            <span class="show-live-badge">LIVE</span>
+          </div>
+          <div class="show-content">
+            <span class="show-category">Music</span>
+            <h3 class="show-title">HEAD TO HEAD</h3>
+            <p class="show-desc">DJ battles featuring the world's best artists</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Wednesdays • 1:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">DJ</div>
+              <span>Hosted by <strong>DJ Elevate</strong></span>
+            </div>
+          </div>
         </div>
-        <div class="show-card">
-          <span class="show-badge">Fridays</span>
-          <h3 class="show-title">WEEKEND WARMUP</h3>
-          <p class="show-time">6:00 PM EAT</p>
-          <span class="show-vs">🔥</span>
+
+        <div class="show-card" data-category="music">
+          <div class="show-image weekend-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Music</span>
+            <h3 class="show-title">WEEKEND WARMUP</h3>
+            <p class="show-desc">Get ready for the weekend with the hottest tracks</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Fridays • 6:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">MX</div>
+              <span>Hosted by <strong>Max Vibes</strong></span>
+            </div>
+          </div>
         </div>
-        <div class="show-card">
-          <span class="show-badge">Saturdays</span>
-          <h3 class="show-title">CLUB NIGHT</h3>
-          <p class="show-time">10:00 PM EAT</p>
-          <span class="show-vs">🎧</span>
+
+        <div class="show-card" data-category="music">
+          <div class="show-image club-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Music</span>
+            <h3 class="show-title">CLUB NIGHT</h3>
+            <p class="show-desc">Late night EDM and house music sessions</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Saturdays • 10:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">NK</div>
+              <span>Hosted by <strong>Nina K</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Politics Shows -->
+        <div class="show-card" data-category="politics">
+          <div class="show-image politics-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Politics</span>
+            <h3 class="show-title">GLOBAL PULSE</h3>
+            <p class="show-desc">Breaking down world politics and geopolitical events</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Mon & Thu • 8:00 AM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">JM</div>
+              <span>Hosted by <strong>James Mwangi</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="politics">
+          <div class="show-image africa-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Politics</span>
+            <h3 class="show-title">AFRICA RISING</h3>
+            <p class="show-desc">African politics, leadership & continental affairs</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Tuesdays • 7:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">AO</div>
+              <span>Hosted by <strong>Amina Osei</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech Shows -->
+        <div class="show-card" data-category="tech">
+          <div class="show-image tech-bg">
+            <span class="show-new-badge">NEW</span>
+          </div>
+          <div class="show-content">
+            <span class="show-category">Tech</span>
+            <h3 class="show-title">TECH TALK</h3>
+            <p class="show-desc">Latest in AI, startups, and digital innovation</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Wednesdays • 3:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">SK</div>
+              <span>Hosted by <strong>Steve Kariuki</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="tech">
+          <div class="show-image crypto-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Tech</span>
+            <h3 class="show-title">CRYPTO CORNER</h3>
+            <p class="show-desc">Blockchain, crypto markets & Web3 insights</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Daily • 9:00 AM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">BT</div>
+              <span>Hosted by <strong>Brian Tech</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="tech">
+          <div class="show-image startup-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Tech</span>
+            <h3 class="show-title">STARTUP STORIES</h3>
+            <p class="show-desc">Founders share their journey building companies</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Sundays • 2:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">LN</div>
+              <span>Hosted by <strong>Lucy Njeri</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sports Shows -->
+        <div class="show-card" data-category="sports">
+          <div class="show-image sports-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Sports</span>
+            <h3 class="show-title">GAME TIME</h3>
+            <p class="show-desc">Football analysis, predictions & match reviews</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Sat & Sun • 4:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">MO</div>
+              <span>Hosted by <strong>Mike Omondi</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="sports">
+          <div class="show-image basketball-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Sports</span>
+            <h3 class="show-title">HOOP DREAMS</h3>
+            <p class="show-desc">NBA coverage, African basketball & more</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Thursdays • 8:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">DK</div>
+              <span>Hosted by <strong>Dennis Kibet</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Culture Shows -->
+        <div class="show-card" data-category="culture">
+          <div class="show-image culture-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Culture</span>
+            <h3 class="show-title">CULTURE CODE</h3>
+            <p class="show-desc">Art, fashion, film & the creative scene</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Fridays • 12:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">ZA</div>
+              <span>Hosted by <strong>Zara Achieng</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="culture">
+          <div class="show-image lifestyle-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Culture</span>
+            <h3 class="show-title">LIFESTYLE LOUNGE</h3>
+            <p class="show-desc">Travel, food, wellness & living your best life</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Sundays • 10:00 AM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">FA</div>
+              <span>Hosted by <strong>Faith Auma</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="culture">
+          <div class="show-image stories-bg"></div>
+          <div class="show-content">
+            <span class="show-category">Culture</span>
+            <h3 class="show-title">AFRICAN STORIES</h3>
+            <p class="show-desc">History, heritage & tales from the continent</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Tuesdays • 9:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">KW</div>
+              <span>Hosted by <strong>Kofi Wiredu</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Become a Host CTA -->
+      <div class="host-cta">
+        <div class="host-cta-content">
+          <h3>Want to Host Your Own Show?</h3>
+          <p>Join Elevate Radio and share your voice with listeners worldwide</p>
+          <a href="https://www.instagram.com/elevateradioco/" target="_blank" class="host-cta-btn">Apply to Host →</a>
         </div>
       </div>
     </section>
@@ -965,6 +1420,30 @@
 
     // Initialize player art as paused
     playerArt.classList.add('paused');
+
+    // Category filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const showCards = document.querySelectorAll('.show-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.dataset.category;
+
+        // Filter cards
+        showCards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+            card.style.animation = 'fadeInUp 0.5s ease forwards';
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
