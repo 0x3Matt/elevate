@@ -627,6 +627,27 @@
       margin-bottom: 12px;
     }
 
+    .show-category.one-badge {
+      background: rgba(255, 215, 0, 0.2);
+      color: #fbbf24;
+    }
+
+    .featured-show {
+      border: 2px solid var(--pink-primary);
+      box-shadow: 0 0 30px rgba(233, 30, 140, 0.3);
+    }
+
+    .featured-show .show-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(233, 30, 140, 0.3) 100%);
+      pointer-events: none;
+    }
+
     .show-card .show-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 24px;
@@ -1099,9 +1120,49 @@
         <button class="filter-btn" data-category="sports">Sports</button>
         <button class="filter-btn" data-category="culture">Culture</button>
         <button class="filter-btn" data-category="travel">Travel</button>
+        <button class="filter-btn" data-category="one">ONE</button>
       </div>
 
       <div class="shows-grid">
+        <!-- Featured Shows - TOP -->
+        <div class="show-card featured-show" data-category="culture">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=400&h=300&fit=crop" alt="THE FREQUENCY">
+            <span class="show-live-badge">FEATURED</span>
+          </div>
+          <div class="show-content">
+            <span class="show-category">Culture</span>
+            <h3 class="show-title">THE FREQUENCY</h3>
+            <p class="show-desc">Deep dive into Africa's rich history, heritage & untold stories</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Daily • 6:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>Hosted by <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card featured-show" data-category="culture">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop" alt="IN A BETTER TIME">
+            <span class="show-new-badge">NEW</span>
+          </div>
+          <div class="show-content">
+            <span class="show-category">Culture</span>
+            <h3 class="show-title">IN A BETTER TIME</h3>
+            <p class="show-desc">Nostalgic vibes, timeless music & feel-good moments</p>
+            <div class="show-meta">
+              <span class="show-time">📅 Weekends • 8:00 PM EAT</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">ER</div>
+              <span>Hosted by <strong>Elevate Radio</strong></span>
+            </div>
+          </div>
+        </div>
+
         <!-- Music Shows -->
         <div class="show-card" data-category="music">
           <div class="show-image">
@@ -1397,6 +1458,98 @@
             </div>
           </div>
         </div>
+
+        <!-- ONE Category Shows -->
+        <div class="show-card" data-category="one">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="KENYA'S HISTORY">
+            <span class="show-new-badge">ONE</span>
+          </div>
+          <div class="show-content">
+            <span class="show-category one-badge">ONE</span>
+            <h3 class="show-title">KENYA'S HISTORY</h3>
+            <p class="show-desc">Exploring the rich heritage and history of Kenya</p>
+            <div class="show-meta">
+              <span class="show-time">📺 Video Series</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>By <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="one">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop" alt="THE FUTURE OF MONEY">
+          </div>
+          <div class="show-content">
+            <span class="show-category one-badge">ONE</span>
+            <h3 class="show-title">THE FUTURE OF MONEY</h3>
+            <p class="show-desc">How crypto & blockchain are reshaping finance</p>
+            <div class="show-meta">
+              <span class="show-time">📺 Video Series</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>By <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="one">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400&h=300&fit=crop" alt="THE GIFT">
+          </div>
+          <div class="show-content">
+            <span class="show-category one-badge">ONE</span>
+            <h3 class="show-title">THE GIFT</h3>
+            <p class="show-desc">Inspiring stories of talent, purpose & destiny</p>
+            <div class="show-meta">
+              <span class="show-time">📺 Video Series</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>By <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="one">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" alt="AVICII TRIBUTE">
+          </div>
+          <div class="show-content">
+            <span class="show-category one-badge">ONE</span>
+            <h3 class="show-title">AVICII TRIBUTE</h3>
+            <p class="show-desc">Celebrating the legendary music of Avicii</p>
+            <div class="show-meta">
+              <span class="show-time">📺 Music Video</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>By <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-card" data-category="one">
+          <div class="show-image">
+            <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop" alt="CLUB SESSIONS">
+          </div>
+          <div class="show-content">
+            <span class="show-category one-badge">ONE</span>
+            <h3 class="show-title">CLUB SESSIONS</h3>
+            <p class="show-desc">The best club music mixes & DJ sets</p>
+            <div class="show-meta">
+              <span class="show-time">📺 Music Video</span>
+            </div>
+            <div class="show-host">
+              <div class="host-avatar-small">UT</div>
+              <span>By <strong>Ubuntu Tribe</strong></span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Become a Host CTA -->
@@ -1452,6 +1605,9 @@
         </a>
         <a href="https://www.instagram.com/elevateradioco/" target="_blank" class="social-link" aria-label="Instagram">
           <svg viewBox="0 0 24 24"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.058-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.041 0 2.67.01 2.986.058 4.04.045.976.207 1.505.344 1.858.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058 2.67 0 2.987-.01 4.04-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041 0-2.67-.01-2.986-.058-4.04-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.055-.048-1.37-.058-4.041-.058zm0 3.063a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 8.468a3.333 3.333 0 100-6.666 3.333 3.333 0 000 6.666zm6.538-8.671a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@UbuntuTribeOne" target="_blank" class="social-link" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
       </div>
     </div>
