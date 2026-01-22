@@ -243,10 +243,24 @@
       max-width: 600px;
       background: var(--bg-card);
       border-radius: 24px;
-      padding: 40px;
+      padding: 32px;
       border: 1px solid var(--border-color);
       position: relative;
       z-index: 1;
+      min-height: 500px;
+    }
+
+    /* Radio.co Widget Styling */
+    .widget-container iframe {
+      width: 100% !important;
+      min-height: 450px;
+      border: none !important;
+      border-radius: 16px;
+    }
+
+    #radioco-request {
+      width: 100%;
+      min-height: 450px;
     }
 
     /* Back link */
@@ -350,7 +364,27 @@
     </div>
 
     <div class="widget-container">
-      <script src="https://embed.radio.co/request/wdc84ff0.js"></script>
+      <div id="radioco-request">
+        <noscript>
+          <p style="text-align: center; color: var(--gray-300);">Please enable JavaScript to use the song request feature.</p>
+        </noscript>
+      </div>
+      <script>
+        // Load Radio.co request widget
+        (function() {
+          var script = document.createElement('script');
+          script.src = 'https://embed.radio.co/request/wdc84ff0.js';
+          script.async = true;
+          script.onerror = function() {
+            document.getElementById('radioco-request').innerHTML = 
+              '<div style="text-align: center; padding: 40px;">' +
+              '<p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Song request widget is currently unavailable.</p>' +
+              '<p style="color: rgba(255,255,255,0.5); font-size: 14px;">Please try again later or contact us on social media to request a song.</p>' +
+              '</div>';
+          };
+          document.getElementById('radioco-request').appendChild(script);
+        })();
+      </script>
     </div>
 
     <a href="index.html" class="back-link">
