@@ -1,0 +1,368 @@
+<!--
+  Elevate Radio - Song Request Page
+  Updated: 2026-01-19
+  Crisp modern design matching main site
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Song | Elevate Radio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-primary: #E91E8C;
+      --pink-dark: #C4177A;
+      --pink-light: #FF4DA6;
+      --pink-glow: rgba(233, 30, 140, 0.3);
+      --bg-primary: #0B0E17;
+      --bg-secondary: #111827;
+      --bg-card: #151C2C;
+      --bg-card-hover: #1A2235;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --white: #ffffff;
+      --gray-100: rgba(255, 255, 255, 0.9);
+      --gray-200: rgba(255, 255, 255, 0.7);
+      --gray-300: rgba(255, 255, 255, 0.5);
+      --gray-400: rgba(255, 255, 255, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(11, 14, 23, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--pink-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: var(--pink-primary);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    nav a {
+      color: var(--gray-200);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--pink-primary);
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: var(--pink-primary);
+      border-color: var(--pink-primary);
+    }
+
+    .nav-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Main Content */
+    .request-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 140px 40px 80px;
+      position: relative;
+    }
+
+    /* Blob Background */
+    .blob-bg {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      opacity: 0.08;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: blobMove 10s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes blobMove {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+
+    .request-header {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .request-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(233, 30, 140, 0.15);
+      border: 1px solid rgba(233, 30, 140, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--pink-light);
+      margin-bottom: 24px;
+    }
+
+    .request-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .request-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .request-title span {
+      color: var(--pink-primary);
+    }
+
+    .request-subtitle {
+      font-size: 17px;
+      color: var(--gray-200);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Widget Container */
+    .widget-container {
+      width: 100%;
+      max-width: 600px;
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray-200);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 32px;
+      transition: color 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link:hover {
+      color: var(--pink-primary);
+    }
+
+    .back-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .footer-text {
+      color: var(--gray-400);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .request-page {
+        padding: 120px 24px 60px;
+      }
+
+      .request-title {
+        font-size: 36px;
+      }
+
+      .widget-container {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob-bg"></div>
+
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">E</div>
+        <div class="logo-text">Elevate<span>Radio</span></div>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#episodes">Episodes</a>
+        <a href="index.html#shows">Shows</a>
+        <a href="request.html" class="active">Request</a>
+        <button class="nav-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Live
+        </button>
+      </nav>
+      <button class="mobile-menu-btn">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="request-page">
+    <div class="request-header">
+      <div class="request-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        Song Request
+      </div>
+      <h1 class="request-title">Request a <span>Song</span></h1>
+      <p class="request-subtitle">Search our library and request your favorite tracks. We'll play them on air for you and listeners worldwide!</p>
+    </div>
+
+    <div class="widget-container">
+      <script src="https://embed.radio.co/request/wdc84ff0.js"></script>
+    </div>
+
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Back to Home
+    </a>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-text">© 2026 Elevate Radio Worldwide. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
