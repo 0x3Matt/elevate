@@ -448,6 +448,40 @@
       border: none;
     }
 
+    .apollo-show-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .btn-show-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--pink-primary);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-show-more:hover {
+      background: var(--pink-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px var(--pink-glow);
+    }
+
+    .btn-show-more svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
     @media (max-width: 1024px) {
       .apollo-video-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1966,21 +2000,12 @@
               <div class="apollo-video-item">
                 <iframe src="https://www.youtube.com/embed/wCcDdIY7M6k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-              <div class="apollo-video-item">
-                <iframe src="https://www.youtube.com/embed/HKSNuwpfYd4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="apollo-video-item">
-                <iframe src="https://www.youtube.com/embed/1znYV7xFIc8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="apollo-video-item">
-                <iframe src="https://www.youtube.com/embed/2tMB3ONWScE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="apollo-video-item">
-                <iframe src="https://www.youtube.com/embed/v3Su9FZpZBw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="apollo-video-item">
-                <iframe src="https://www.youtube.com/embed/3MpflQ_MJYg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+            </div>
+            <div class="apollo-show-more">
+              <button class="btn-show-more" id="apolloShowMore">
+                <span>Show All Episodes</span>
+                <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -1998,7 +2023,7 @@
         <div class="episodes-grid">
           <div class="episode-card coming-soon" data-show="head-to-head">
             <div class="episode-image">
-              <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=400&h=300&fit=crop" alt="Head to Head EDM">
+              <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop" alt="Head to Head EDM">
               <div class="episode-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
@@ -2229,16 +2254,23 @@
         image: 'apollo-pulse.jpg',
         isLive: true,
         episodes: [
-          { id: 1, title: 'Chill Lofi Hip Hop Mix', date: 'Jan 20, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'jfKfPfyJRdk', thumb: 'https://img.youtube.com/vi/jfKfPfyJRdk/mqdefault.jpg' },
-          { id: 2, title: 'Deep House & Chill Mix', date: 'Jan 18, 2026', duration: '2:30:00', type: 'youtube', youtubeId: '5qap5aO4i9A', thumb: 'https://img.youtube.com/vi/5qap5aO4i9A/mqdefault.jpg' },
-          { id: 3, title: 'Ambient Electronic Journey', date: 'Jan 15, 2026', duration: '1:45:00', type: 'youtube', youtubeId: 'DWcJFNfaw9c', thumb: 'https://img.youtube.com/vi/DWcJFNfaw9c/mqdefault.jpg' },
-          { id: 4, title: 'Night Drive Synthwave Mix', date: 'Jan 12, 2026', duration: '1:30:00', type: 'youtube', youtubeId: '4xDzrJKXOOY', thumb: 'https://img.youtube.com/vi/4xDzrJKXOOY/mqdefault.jpg' },
+          { id: 1, title: 'Deep Afro House Mix Vol. 1', date: 'Jan 22, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'Nl55fXBWv-Y', thumb: 'https://img.youtube.com/vi/Nl55fXBWv-Y/mqdefault.jpg' },
+          { id: 2, title: 'Deep Afro House Mix Vol. 2', date: 'Jan 21, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'Kqk7KAzNrYM', thumb: 'https://img.youtube.com/vi/Kqk7KAzNrYM/mqdefault.jpg' },
+          { id: 3, title: 'Deep Afro House Mix Vol. 3', date: 'Jan 20, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'VdSdN3bfQYw', thumb: 'https://img.youtube.com/vi/VdSdN3bfQYw/mqdefault.jpg' },
+          { id: 4, title: 'Deep Afro House Mix Vol. 4', date: 'Jan 19, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'J262gtWGFJ0', thumb: 'https://img.youtube.com/vi/J262gtWGFJ0/mqdefault.jpg' },
+          { id: 5, title: 'Deep Afro House Mix Vol. 5', date: 'Jan 18, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'MwdrV6BECL0', thumb: 'https://img.youtube.com/vi/MwdrV6BECL0/mqdefault.jpg' },
+          { id: 6, title: 'Deep Afro House Mix Vol. 6', date: 'Jan 17, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'wCcDdIY7M6k', thumb: 'https://img.youtube.com/vi/wCcDdIY7M6k/mqdefault.jpg' },
+          { id: 7, title: 'Deep Afro House Mix Vol. 7', date: 'Jan 16, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'HKSNuwpfYd4', thumb: 'https://img.youtube.com/vi/HKSNuwpfYd4/mqdefault.jpg' },
+          { id: 8, title: 'Deep Afro House Mix Vol. 8', date: 'Jan 15, 2026', duration: '1:00:00', type: 'youtube', youtubeId: '1znYV7xFIc8', thumb: 'https://img.youtube.com/vi/1znYV7xFIc8/mqdefault.jpg' },
+          { id: 9, title: 'Deep Afro House Mix Vol. 9', date: 'Jan 14, 2026', duration: '1:00:00', type: 'youtube', youtubeId: '2tMB3ONWScE', thumb: 'https://img.youtube.com/vi/2tMB3ONWScE/mqdefault.jpg' },
+          { id: 10, title: 'Deep Afro House Mix Vol. 10', date: 'Jan 13, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'v3Su9FZpZBw', thumb: 'https://img.youtube.com/vi/v3Su9FZpZBw/mqdefault.jpg' },
+          { id: 11, title: 'Deep Afro House Mix Vol. 11', date: 'Jan 12, 2026', duration: '1:00:00', type: 'youtube', youtubeId: '3MpflQ_MJYg', thumb: 'https://img.youtube.com/vi/3MpflQ_MJYg/mqdefault.jpg' },
         ]
       },
       'head-to-head': {
         title: 'Head To Head',
         category: 'Music',
-        image: 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=400&fit=crop',
         isLive: false,
         episodes: [
           { id: 1, title: 'DJ Snake vs Marshmello - EDM Showdown', date: 'Jan 15, 2026', duration: '58:32', type: 'video', thumb: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=200&h=200&fit=crop' },
@@ -2451,6 +2483,12 @@
     document.querySelectorAll('.episode-card:not(.coming-soon)').forEach(card => {
       card.addEventListener('click', () => openModal(card.dataset.show));
     });
+
+    // Apollo Pulse Show More button
+    const apolloShowMoreBtn = document.getElementById('apolloShowMore');
+    if (apolloShowMoreBtn) {
+      apolloShowMoreBtn.addEventListener('click', () => openModal('apollo-pulse'));
+    }
 
     modalClose.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', (e) => {
