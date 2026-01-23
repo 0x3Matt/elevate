@@ -294,10 +294,23 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-dark) 100%);
+      background: linear-gradient(135deg, var(--pink-primary) 0%, var(--pink-light) 50%, var(--pink-dark) 100%);
       border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-      opacity: 0.15;
-      animation: blobMove 10s ease-in-out infinite;
+      opacity: 0.4;
+      animation: blobMove 10s ease-in-out infinite, blobPulse 3s ease-in-out infinite;
+      filter: blur(40px);
+      box-shadow: 0 0 80px var(--pink-primary), 0 0 120px var(--pink-glow);
+    }
+
+    @keyframes blobPulse {
+      0%, 100% { 
+        opacity: 0.35;
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 0.55;
+        transform: scale(1.05);
+      }
     }
 
     @keyframes blobMove {
@@ -329,100 +342,6 @@
       to { transform: rotate(360deg); }
     }
 
-    .hero-top-music {
-      position: absolute;
-      right: -20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 20px;
-      z-index: 3;
-      width: 200px;
-    }
-
-    .top-music-label {
-      font-size: 12px;
-      color: var(--gray-300);
-      margin-bottom: 16px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .top-music-items {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .top-music-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .top-music-item:hover {
-      background: var(--bg-card-hover);
-    }
-
-    .top-music-thumb {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .top-music-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .top-music-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .top-music-item:hover .top-music-play {
-      opacity: 1;
-    }
-
-    .top-music-play svg {
-      width: 16px;
-      height: 16px;
-      fill: white;
-    }
-
-    .top-music-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .top-music-title {
-      font-size: 13px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .top-music-artist {
-      font-size: 11px;
-      color: var(--gray-300);
-    }
 
     /* Latest Episodes */
     .latest-episodes {
@@ -1023,6 +942,76 @@
       letter-spacing: -1px;
     }
 
+    .modal-coming-soon {
+      position: absolute;
+      top: 20px;
+      right: 70px;
+      background: rgba(255, 193, 7, 0.9);
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-coming-soon.visible {
+      display: block;
+    }
+
+    .modal-live-badge {
+      position: absolute;
+      top: 20px;
+      right: 70px;
+      background: var(--pink-primary);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: none;
+      backdrop-filter: blur(10px);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .modal-live-badge.visible {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-live-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    /* YouTube embed styling */
+    .episode-item.youtube-video {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .youtube-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .youtube-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     .modal-body {
       padding: 32px;
       max-height: calc(85vh - 250px);
@@ -1187,10 +1176,6 @@
 
       .hero-buttons {
         justify-content: center;
-      }
-
-      .hero-top-music {
-        display: none;
       }
 
       .episodes-grid {
@@ -1441,7 +1426,13 @@
       }
 
       .hero {
-        padding: 100px 0 60px;
+        padding: 120px 0 60px;
+      }
+
+      .hero-image {
+        width: 220px;
+        height: 220px;
+        margin-top: 20px;
       }
 
       .hero-title {
@@ -1466,14 +1457,10 @@
         padding: 14px 24px;
       }
 
-      .hero-image {
-        width: 200px;
-        height: 200px;
-      }
-
       .hero-blob {
         width: 280px;
         height: 280px;
+        filter: blur(30px);
       }
 
       .section-header {
@@ -1717,7 +1704,6 @@
         <a href="#home">Home</a>
         <a href="#episodes">Episodes</a>
         <a href="#shows">Shows</a>
-        <a href="request.html">Request</a>
         <button class="nav-btn" id="headerPlayBtn">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           Live
@@ -1752,35 +1738,6 @@
           <div class="hero-image">
             <img src="elevate-png.png" alt="Elevate Radio Logo">
           </div>
-          <div class="hero-top-music">
-            <p class="top-music-label">Top Music Listened</p>
-            <div class="top-music-items">
-              <div class="top-music-item">
-                <div class="top-music-thumb">
-                  <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="">
-                  <div class="top-music-play">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-                <div class="top-music-info">
-                  <p class="top-music-title">Afrobeats Mix</p>
-                  <p class="top-music-artist">DJ Elevate</p>
-                </div>
-              </div>
-              <div class="top-music-item">
-                <div class="top-music-thumb">
-                  <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=100&h=100&fit=crop" alt="">
-                  <div class="top-music-play">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-                <div class="top-music-info">
-                  <p class="top-music-title">House Vibes</p>
-                  <p class="top-music-artist">Nina K</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1798,6 +1755,28 @@
           </a>
         </div>
         <div class="episodes-grid">
+          <div class="episode-card" data-show="apollo-pulse">
+            <div class="episode-image">
+              <img src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=400&h=300&fit=crop" alt="Apollo Pulse Mix">
+              <div class="episode-play">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <span class="episode-number">LIVE</span>
+            </div>
+            <div class="episode-content">
+              <h3 class="episode-title">Chill Lofi Hip Hop Mix - Apollo Pulse</h3>
+              <div class="episode-meta">
+                <span class="episode-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                  Jan 20, 2026
+                </span>
+                <span class="episode-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                  1h
+                </span>
+              </div>
+            </div>
+          </div>
           <div class="episode-card" data-show="head-to-head">
             <div class="episode-image">
               <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop" alt="DJ Snake vs Marshmello">
@@ -1903,10 +1882,27 @@
           </a>
         </div>
         <div class="shows-grid">
+          <div class="show-card" data-show="apollo-pulse">
+            <div class="show-image">
+              <img src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=500&h=400&fit=crop" alt="APOLLO PULSE">
+              <span class="show-badge">Live</span>
+              <div class="show-play">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="show-content">
+              <p class="show-host">ft. Apollo</p>
+              <h3 class="show-title">Apollo Pulse</h3>
+              <p class="show-schedule">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                24/7 Music Mixes
+              </p>
+            </div>
+          </div>
           <div class="show-card" data-show="head-to-head">
             <div class="show-image">
               <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=500&h=400&fit=crop" alt="HEAD TO HEAD">
-              <span class="show-badge">Live</span>
+              <span class="show-badge">Soon</span>
               <div class="show-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
@@ -1923,7 +1919,7 @@
           <div class="show-card" data-show="global-pulse">
             <div class="show-image">
               <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=500&h=400&fit=crop" alt="GLOBAL PULSE">
-              <span class="show-badge">Politics</span>
+              <span class="show-badge">Soon</span>
               <div class="show-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
@@ -1940,7 +1936,7 @@
           <div class="show-card" data-show="tech-talk">
             <div class="show-image">
               <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=400&fit=crop" alt="TECH TALK">
-              <span class="show-badge">New</span>
+              <span class="show-badge">Soon</span>
               <div class="show-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
@@ -1970,7 +1966,6 @@
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                 Start Listening
               </a>
-              <a href="request.html" class="btn-outline-white">Request a Song</a>
             </div>
           </div>
           <div class="cta-visual">
@@ -2009,14 +2004,13 @@
           <a href="#home">Home</a>
           <a href="#episodes">Episodes</a>
           <a href="#shows">Shows</a>
-          <a href="request.html">Request</a>
         </div>
         <div class="footer-links">
           <h4>Shows</h4>
+          <a href="#">Apollo Pulse</a>
           <a href="#">Head To Head</a>
           <a href="#">Global Pulse</a>
           <a href="#">Tech Talk</a>
-          <a href="#">Culture Code</a>
         </div>
         <div class="footer-links">
           <h4>Contact</h4>
@@ -2045,6 +2039,8 @@
         <button class="modal-close" id="modalClose">
           <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
+        <span class="modal-coming-soon" id="modalComingSoon">Coming Soon</span>
+        <span class="modal-live-badge" id="modalLiveBadge"><span class="dot"></span> Live</span>
         <div class="modal-show-info">
           <p class="modal-category" id="modalCategory"></p>
           <h2 class="modal-title" id="modalTitle"></h2>
@@ -2096,10 +2092,23 @@
   <script>
     // Show Data
     const showsData = {
+      'apollo-pulse': {
+        title: 'Apollo Pulse',
+        category: 'Music',
+        image: 'https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=800&h=400&fit=crop',
+        isLive: true,
+        episodes: [
+          { id: 1, title: 'Chill Lofi Hip Hop Mix', date: 'Jan 20, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'jfKfPfyJRdk', thumb: 'https://img.youtube.com/vi/jfKfPfyJRdk/mqdefault.jpg' },
+          { id: 2, title: 'Deep House & Chill Mix', date: 'Jan 18, 2026', duration: '2:30:00', type: 'youtube', youtubeId: '5qap5aO4i9A', thumb: 'https://img.youtube.com/vi/5qap5aO4i9A/mqdefault.jpg' },
+          { id: 3, title: 'Ambient Electronic Journey', date: 'Jan 15, 2026', duration: '1:45:00', type: 'youtube', youtubeId: 'DWcJFNfaw9c', thumb: 'https://img.youtube.com/vi/DWcJFNfaw9c/mqdefault.jpg' },
+          { id: 4, title: 'Night Drive Synthwave Mix', date: 'Jan 12, 2026', duration: '1:30:00', type: 'youtube', youtubeId: '4xDzrJKXOOY', thumb: 'https://img.youtube.com/vi/4xDzrJKXOOY/mqdefault.jpg' },
+        ]
+      },
       'head-to-head': {
         title: 'Head To Head',
         category: 'Music',
         image: 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800&h=400&fit=crop',
+        isLive: false,
         episodes: [
           { id: 1, title: 'DJ Snake vs Marshmello - EDM Showdown', date: 'Jan 15, 2026', duration: '58:32', type: 'video', thumb: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=200&h=200&fit=crop' },
           { id: 2, title: 'Afrobeats Battle: Burna Boy vs Wizkid', date: 'Jan 8, 2026', duration: '1:02:15', type: 'video', thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop' },
@@ -2111,6 +2120,7 @@
         title: 'Global Pulse',
         category: 'Politics',
         image: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&h=400&fit=crop',
+        isLive: false,
         episodes: [
           { id: 1, title: 'The Future of African Union Leadership', date: 'Jan 16, 2026', duration: '45:20', type: 'audio', thumb: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=200&h=200&fit=crop' },
           { id: 2, title: 'US-China Relations: What\'s Next?', date: 'Jan 13, 2026', duration: '52:15', type: 'video', thumb: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=200&h=200&fit=crop' },
@@ -2121,6 +2131,7 @@
         title: 'Tech Talk',
         category: 'Technology',
         image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop',
+        isLive: false,
         episodes: [
           { id: 1, title: 'AI in 2026: What\'s Real vs Hype', date: 'Jan 15, 2026', duration: '55:40', type: 'video', thumb: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=200&h=200&fit=crop' },
           { id: 2, title: 'African Tech Startups to Watch', date: 'Jan 8, 2026', duration: '48:25', type: 'audio', thumb: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=200&h=200&fit=crop' },
@@ -2131,6 +2142,7 @@
         title: 'Culture Code',
         category: 'Culture',
         image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=400&fit=crop',
+        isLive: false,
         episodes: [
           { id: 1, title: 'Afrofuturism in Modern Cinema', date: 'Jan 17, 2026', duration: '52:30', type: 'video', thumb: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=200&h=200&fit=crop' },
           { id: 2, title: 'Lagos Fashion Week Highlights', date: 'Jan 10, 2026', duration: '38:45', type: 'video', thumb: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&h=200&fit=crop' },
@@ -2227,6 +2239,8 @@
     const modalTitle = document.getElementById('modalTitle');
     const episodesList = document.getElementById('episodesList');
     const episodesCount = document.getElementById('episodesCount');
+    const modalComingSoon = document.getElementById('modalComingSoon');
+    const modalLiveBadge = document.getElementById('modalLiveBadge');
 
     function openModal(showId) {
       const show = showsData[showId];
@@ -2237,27 +2251,57 @@
       modalTitle.textContent = show.title;
       episodesCount.textContent = `${show.episodes.length} episodes`;
 
-      episodesList.innerHTML = show.episodes.map(ep => `
-        <div class="episode-item">
-          <div class="episode-thumb">
-            <img src="${ep.thumb}" alt="${ep.title}">
-            <div class="episode-type">
-              ${ep.type === 'video' 
-                ? '<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>'
-                : '<svg viewBox="0 0 24 24"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>'
-              }
+      // Show Coming Soon or Live badge
+      if (show.isLive) {
+        modalComingSoon.classList.remove('visible');
+        modalLiveBadge.classList.add('visible');
+      } else {
+        modalComingSoon.classList.add('visible');
+        modalLiveBadge.classList.remove('visible');
+      }
+
+      episodesList.innerHTML = show.episodes.map(ep => {
+        if (ep.type === 'youtube') {
+          return `
+            <div class="episode-item youtube-video" onclick="window.open('https://www.youtube.com/watch?v=${ep.youtubeId}', '_blank')">
+              <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/${ep.youtubeId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="episode-info" style="flex: 1;">
+                  <p class="episode-date">${ep.date}</p>
+                  <h4 class="episode-name">${ep.title}</h4>
+                  <p class="episode-duration">${ep.duration}</p>
+                </div>
+                <div class="episode-play-btn">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+        return `
+          <div class="episode-item">
+            <div class="episode-thumb">
+              <img src="${ep.thumb}" alt="${ep.title}">
+              <div class="episode-type">
+                ${ep.type === 'video' 
+                  ? '<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>'
+                  : '<svg viewBox="0 0 24 24"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>'
+                }
+              </div>
+            </div>
+            <div class="episode-info">
+              <p class="episode-date">${ep.date}</p>
+              <h4 class="episode-name">${ep.title}</h4>
+              <p class="episode-duration">${ep.duration}</p>
+            </div>
+            <div class="episode-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
-          <div class="episode-info">
-            <p class="episode-date">${ep.date}</p>
-            <h4 class="episode-name">${ep.title}</h4>
-            <p class="episode-duration">${ep.duration}</p>
-          </div>
-          <div class="episode-play-btn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       modalOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
