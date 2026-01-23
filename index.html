@@ -15,6 +15,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" href="elevate-png.png">
+  <link rel="apple-touch-icon" href="elevate-png.png">
   <title>Elevate Radio | 24 HRS MUSIC • ZERO TALK</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,13 +96,17 @@
     .logo-icon {
       width: 42px;
       height: 42px;
-      background: var(--pink-primary);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 20px;
+      overflow: hidden;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .logo-text {
@@ -313,7 +319,14 @@
     .hero-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      padding: 40px;
+      animation: rotateLogo 20s linear infinite;
+    }
+
+    @keyframes rotateLogo {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .hero-top-music {
@@ -1697,7 +1710,7 @@
   <header>
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">E</div>
+        <div class="logo-icon"><img src="elevate-png.png" alt="Elevate Radio"></div>
         <div class="logo-text">Elevate<span>Radio</span></div>
       </a>
       <nav>
@@ -1724,7 +1737,7 @@
             <span class="dot"></span>
             Live Now • 24/7 Streaming
           </div>
-          <h1 class="hero-title">A Online Radio To <span>Inspiring Everyone</span></h1>
+          <h1 class="hero-title">An Online Radio to <span>Inspire Everyone..</span></h1>
           <p class="hero-desc">Experience the best in music, culture, and conversation. Elevate Radio brings you 24/7 non-stop entertainment from creators around the world.</p>
           <div class="hero-buttons">
             <button class="btn-primary" id="mainPlayBtn">
@@ -1737,7 +1750,7 @@
         <div class="hero-visual">
           <div class="hero-blob"></div>
           <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=600&fit=crop" alt="DJ at Elevate Radio">
+            <img src="elevate-png.png" alt="Elevate Radio Logo">
           </div>
           <div class="hero-top-music">
             <p class="top-music-label">Top Music Listened</p>
@@ -1975,7 +1988,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="logo">
-            <div class="logo-icon">E</div>
+            <div class="logo-icon"><img src="elevate-png.png" alt="Elevate Radio"></div>
             <div class="logo-text">Elevate<span>Radio</span></div>
           </a>
           <p>Experience the best in music, culture, and conversation. Broadcasting 24/7 to over 50 countries worldwide.</p>
@@ -2051,7 +2064,7 @@
   <div class="bottom-player">
     <div class="bottom-player-info">
       <div class="bottom-player-art">
-        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="Now Playing">
+        <img src="elevate-png.png" alt="Elevate Radio">
       </div>
       <div class="bottom-player-text">
         <p class="bottom-player-title">Elevate Radio</p>

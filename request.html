@@ -13,6 +13,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" href="elevate-png.png">
+  <link rel="apple-touch-icon" href="elevate-png.png">
   <title>Request a Song | Elevate Radio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,13 +90,17 @@
     .logo-icon {
       width: 42px;
       height: 42px;
-      background: var(--pink-primary);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 20px;
+      overflow: hidden;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .logo-text {
@@ -588,7 +594,7 @@
   <header>
     <div class="container">
       <a href="index.html" class="logo">
-        <div class="logo-icon">E</div>
+        <div class="logo-icon"><img src="elevate-png.png" alt="Elevate Radio"></div>
         <div class="logo-text">Elevate<span>Radio</span></div>
       </a>
       <nav>
@@ -657,7 +663,7 @@
   <div class="bottom-player">
     <div class="bottom-player-info">
       <div class="bottom-player-art">
-        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="Now Playing">
+        <img src="elevate-png.png" alt="Elevate Radio">
       </div>
       <div class="bottom-player-text">
         <p class="bottom-player-title">Elevate Radio</p>
