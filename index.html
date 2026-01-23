@@ -343,6 +343,157 @@
     }
 
 
+    /* Apollo Pulse Featured Section */
+    .apollo-featured {
+      padding: 100px 0;
+      background: var(--bg-primary);
+    }
+
+    .apollo-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .apollo-header {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .apollo-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .apollo-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(21, 28, 44, 0.7) 60%, var(--bg-card) 100%);
+    }
+
+    .apollo-header-content {
+      position: absolute;
+      bottom: 24px;
+      left: 32px;
+      z-index: 2;
+    }
+
+    .apollo-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pink-primary);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .apollo-live-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .apollo-title {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .apollo-subtitle {
+      font-size: 15px;
+      color: var(--gray-200);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .apollo-videos {
+      padding: 32px;
+    }
+
+    .apollo-video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .apollo-video-item {
+      aspect-ratio: 16/9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-card-hover);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .apollo-video-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(233, 30, 140, 0.2);
+    }
+
+    .apollo-video-item iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 1024px) {
+      .apollo-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .apollo-featured {
+        padding: 60px 0;
+      }
+
+      .apollo-card {
+        border-radius: 20px;
+      }
+
+      .apollo-header {
+        height: 180px;
+      }
+
+      .apollo-header-content {
+        bottom: 16px;
+        left: 20px;
+      }
+
+      .apollo-title {
+        font-size: 24px;
+      }
+
+      .apollo-subtitle {
+        font-size: 13px;
+      }
+
+      .apollo-videos {
+        padding: 20px;
+      }
+
+      .apollo-video-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .apollo-video-item {
+        border-radius: 12px;
+      }
+    }
+
     /* Latest Episodes */
     .latest-episodes {
       padding: 100px 0;
@@ -453,6 +604,41 @@
 
     .episode-card:hover .episode-play {
       opacity: 1;
+    }
+
+    /* Coming Soon overlay for episodes */
+    .episode-card.coming-soon {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .episode-card.coming-soon:hover {
+      transform: none;
+      border-color: var(--border-color);
+      box-shadow: none;
+    }
+
+    .episode-card.coming-soon .episode-image::after {
+      content: 'COMING SOON';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 193, 7, 0.95);
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      z-index: 5;
+    }
+
+    .episode-card.coming-soon .episode-play {
+      display: none;
+    }
+
+    .episode-card.coming-soon .episode-image img {
+      filter: grayscale(50%) brightness(0.7);
     }
 
     .episode-play svg {
@@ -1703,7 +1889,6 @@
       <nav>
         <a href="#home">Home</a>
         <a href="#episodes">Episodes</a>
-        <a href="#shows">Shows</a>
         <button class="nav-btn" id="headerPlayBtn">
           <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           Live
@@ -1742,51 +1927,85 @@
       </div>
     </section>
 
+    <!-- Apollo Pulse Featured Section -->
+    <section class="apollo-featured" id="apollo-pulse">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 32px;">
+          <div>
+            <p class="section-label">Featured Show</p>
+            <h2 class="section-title">Now Playing</h2>
+          </div>
+        </div>
+        <div class="apollo-card">
+          <div class="apollo-header">
+            <img src="apollo-pulse.jpg" alt="Apollo Pulse Music">
+            <div class="apollo-header-overlay"></div>
+            <div class="apollo-header-content">
+              <span class="apollo-live-badge"><span class="dot"></span> LIVE</span>
+              <h2 class="apollo-title">Apollo Pulse</h2>
+              <p class="apollo-subtitle">High Energy Music • Deep Afro House</p>
+            </div>
+          </div>
+          <div class="apollo-videos">
+            <div class="apollo-video-grid">
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/Nl55fXBWv-Y" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/Kqk7KAzNrYM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/VdSdN3bfQYw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/J262gtWGFJ0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/MwdrV6BECL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/wCcDdIY7M6k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/HKSNuwpfYd4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/1znYV7xFIc8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/2tMB3ONWScE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/v3Su9FZpZBw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="apollo-video-item">
+                <iframe src="https://www.youtube.com/embed/3MpflQ_MJYg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="latest-episodes" id="episodes">
       <div class="container">
         <div class="section-header">
           <div>
-            <p class="section-label">Latest Episodes</p>
-            <h2 class="section-title">Hear The Latest Episodes</h2>
+            <p class="section-label">More Shows</p>
+            <h2 class="section-title">Coming Soon</h2>
           </div>
-          <a href="#" class="see-all">
-            See All Episodes
-            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-          </a>
         </div>
         <div class="episodes-grid">
-          <div class="episode-card" data-show="apollo-pulse">
+          <div class="episode-card coming-soon" data-show="head-to-head">
             <div class="episode-image">
-              <img src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=400&h=300&fit=crop" alt="Apollo Pulse Mix">
-              <div class="episode-play">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-              <span class="episode-number">LIVE</span>
-            </div>
-            <div class="episode-content">
-              <h3 class="episode-title">Chill Lofi Hip Hop Mix - Apollo Pulse</h3>
-              <div class="episode-meta">
-                <span class="episode-meta-item">
-                  <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
-                  Jan 20, 2026
-                </span>
-                <span class="episode-meta-item">
-                  <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                  1h
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="episode-card" data-show="head-to-head">
-            <div class="episode-image">
-              <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop" alt="DJ Snake vs Marshmello">
+              <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=400&h=300&fit=crop" alt="Head to Head EDM">
               <div class="episode-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
               <span class="episode-number">EP. 24</span>
             </div>
             <div class="episode-content">
-              <h3 class="episode-title">DJ Snake vs Marshmello - EDM Showdown</h3>
+              <h3 class="episode-title">Head to Head EDM</h3>
               <div class="episode-meta">
                 <span class="episode-meta-item">
                   <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
@@ -1799,16 +2018,16 @@
               </div>
             </div>
           </div>
-          <div class="episode-card" data-show="global-pulse">
+          <div class="episode-card coming-soon" data-show="elevated-show">
             <div class="episode-image">
-              <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=300&fit=crop" alt="African Union Leadership">
+              <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=300&fit=crop" alt="Elevated Show">
               <div class="episode-play">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
               <span class="episode-number">EP. 18</span>
             </div>
             <div class="episode-content">
-              <h3 class="episode-title">The Future of African Union Leadership</h3>
+              <h3 class="episode-title">Elevated Show</h3>
               <div class="episode-meta">
                 <span class="episode-meta-item">
                   <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
@@ -1821,7 +2040,7 @@
               </div>
             </div>
           </div>
-          <div class="episode-card" data-show="tech-talk">
+          <div class="episode-card coming-soon" data-show="tech-talk">
             <div class="episode-image">
               <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop" alt="AI in 2026">
               <div class="episode-play">
@@ -1843,7 +2062,7 @@
               </div>
             </div>
           </div>
-          <div class="episode-card" data-show="culture-code">
+          <div class="episode-card coming-soon" data-show="culture-code">
             <div class="episode-image">
               <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop" alt="Afrofuturism">
               <div class="episode-play">
@@ -1863,91 +2082,6 @@
                   52m
                 </span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="featured-shows" id="shows">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="section-label">Featured Shows</p>
-            <h2 class="section-title">Presenting The Best Shows For You</h2>
-          </div>
-          <a href="#" class="see-all">
-            Browse All Shows
-            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-          </a>
-        </div>
-        <div class="shows-grid">
-          <div class="show-card" data-show="apollo-pulse">
-            <div class="show-image">
-              <img src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=500&h=400&fit=crop" alt="APOLLO PULSE">
-              <span class="show-badge">Live</span>
-              <div class="show-play">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-            <div class="show-content">
-              <p class="show-host">ft. Apollo</p>
-              <h3 class="show-title">Apollo Pulse</h3>
-              <p class="show-schedule">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                24/7 Music Mixes
-              </p>
-            </div>
-          </div>
-          <div class="show-card" data-show="head-to-head">
-            <div class="show-image">
-              <img src="https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=500&h=400&fit=crop" alt="HEAD TO HEAD">
-              <span class="show-badge">Soon</span>
-              <div class="show-play">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-            <div class="show-content">
-              <p class="show-host">ft. DJ Elevate</p>
-              <h3 class="show-title">Head To Head</h3>
-              <p class="show-schedule">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                Wednesday • 1:00 PM EAT
-              </p>
-            </div>
-          </div>
-          <div class="show-card" data-show="global-pulse">
-            <div class="show-image">
-              <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=500&h=400&fit=crop" alt="GLOBAL PULSE">
-              <span class="show-badge">Soon</span>
-              <div class="show-play">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-            <div class="show-content">
-              <p class="show-host">ft. James Mwangi</p>
-              <h3 class="show-title">Global Pulse</h3>
-              <p class="show-schedule">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                Mon & Thursday • 8:00 AM EAT
-              </p>
-            </div>
-          </div>
-          <div class="show-card" data-show="tech-talk">
-            <div class="show-image">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=400&fit=crop" alt="TECH TALK">
-              <span class="show-badge">Soon</span>
-              <div class="show-play">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-            <div class="show-content">
-              <p class="show-host">ft. Steve Kariuki</p>
-              <h3 class="show-title">Tech Talk</h3>
-              <p class="show-schedule">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                Wednesday • 3:00 PM EAT
-              </p>
             </div>
           </div>
         </div>
@@ -2003,14 +2137,11 @@
           <h4>Navigation</h4>
           <a href="#home">Home</a>
           <a href="#episodes">Episodes</a>
-          <a href="#shows">Shows</a>
         </div>
         <div class="footer-links">
           <h4>Shows</h4>
           <a href="#">Apollo Pulse</a>
-          <a href="#">Head To Head</a>
-          <a href="#">Global Pulse</a>
-          <a href="#">Tech Talk</a>
+          <a href="#">More Coming Soon</a>
         </div>
         <div class="footer-links">
           <h4>Contact</h4>
@@ -2095,7 +2226,7 @@
       'apollo-pulse': {
         title: 'Apollo Pulse',
         category: 'Music',
-        image: 'https://images.unsplash.com/photo-1614149162883-504ce4d13909?w=800&h=400&fit=crop',
+        image: 'apollo-pulse.jpg',
         isLive: true,
         episodes: [
           { id: 1, title: 'Chill Lofi Hip Hop Mix', date: 'Jan 20, 2026', duration: '1:00:00', type: 'youtube', youtubeId: 'jfKfPfyJRdk', thumb: 'https://img.youtube.com/vi/jfKfPfyJRdk/mqdefault.jpg' },
@@ -2317,7 +2448,7 @@
       card.addEventListener('click', () => openModal(card.dataset.show));
     });
 
-    document.querySelectorAll('.episode-card').forEach(card => {
+    document.querySelectorAll('.episode-card:not(.coming-soon)').forEach(card => {
       card.addEventListener('click', () => openModal(card.dataset.show));
     });
 
