@@ -1,13 +1,18 @@
 <!--
   Elevate Radio - Song Request Page
-  Updated: 2026-01-19
+  Updated: 2026-01-22
   Crisp modern design matching main site
+  Changes: Added sticky bottom player, improved mobile responsiveness, app-like UX
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0B0E17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Request a Song | Elevate Radio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +47,9 @@
       color: var(--white);
       min-height: 100vh;
       line-height: 1.6;
+      padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -300,10 +308,189 @@
       font-size: 13px;
     }
 
+    /* Sticky Bottom Player */
+    .bottom-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(21, 28, 44, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bottom-player-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bottom-player-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--bg-card);
+    }
+
+    .bottom-player-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bottom-player-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bottom-player-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bottom-player-subtitle {
+      font-size: 12px;
+      color: var(--gray-300);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bottom-player-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--pink-primary);
+      font-weight: 600;
+    }
+
+    .bottom-player-live .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .bottom-player-btn {
+      width: 56px;
+      height: 56px;
+      background: var(--pink-primary);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px var(--pink-glow);
+    }
+
+    .bottom-player-btn:hover {
+      background: var(--pink-dark);
+      transform: scale(1.05);
+    }
+
+    .bottom-player-btn:active {
+      transform: scale(0.95);
+    }
+
+    .bottom-player-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    .bottom-player-btn .play-icon {
+      margin-left: 3px;
+    }
+
+    .bottom-player-btn .pause-icon {
+      display: none;
+    }
+
+    .bottom-player-btn.playing .play-icon {
+      display: none;
+    }
+
+    .bottom-player-btn.playing .pause-icon {
+      display: block;
+    }
+
+    /* Equalizer animation */
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .equalizer .bar {
+      width: 3px;
+      background: var(--pink-primary);
+      border-radius: 1px;
+      animation: equalize 0.8s ease-in-out infinite;
+    }
+
+    .equalizer .bar:nth-child(1) { height: 60%; animation-delay: 0s; }
+    .equalizer .bar:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+    .equalizer .bar:nth-child(3) { height: 40%; animation-delay: 0.4s; }
+    .equalizer .bar:nth-child(4) { height: 80%; animation-delay: 0.1s; }
+
+    .equalizer.paused .bar {
+      animation: none;
+      height: 30%;
+    }
+
+    @keyframes equalize {
+      0%, 100% { height: 30%; }
+      50% { height: 100%; }
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
+      body {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+
       .container {
-        padding: 0 24px;
+        padding: 0 16px;
+      }
+
+      header {
+        padding: 12px 0;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        border-radius: 10px;
+      }
+
+      .logo-text {
+        font-size: 18px;
       }
 
       nav {
@@ -315,15 +502,82 @@
       }
 
       .request-page {
-        padding: 120px 24px 60px;
+        padding: 100px 16px 40px;
+        min-height: auto;
       }
 
       .request-title {
-        font-size: 36px;
+        font-size: 28px;
+        letter-spacing: -1px;
+      }
+
+      .request-subtitle {
+        font-size: 15px;
       }
 
       .widget-container {
-        padding: 24px;
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .back-link {
+        margin-top: 24px;
+      }
+
+      /* Bottom player mobile */
+      .bottom-player {
+        padding: 10px 16px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .bottom-player-art {
+        width: 44px;
+        height: 44px;
+      }
+
+      .bottom-player-btn {
+        width: 52px;
+        height: 52px;
+      }
+
+      .bottom-player-btn svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .blob-bg {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 375px) {
+      .request-title {
+        font-size: 24px;
+      }
+
+      .bottom-player-title {
+        font-size: 13px;
+      }
+    }
+
+    /* Disable scrollbars on mobile */
+    @media (max-width: 768px) {
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    }
+
+    /* PWA styles */
+    @media (display-mode: standalone) {
+      header {
+        padding-top: calc(20px + env(safe-area-inset-top, 0px));
       }
     }
   </style>
@@ -398,5 +652,83 @@
       <p class="footer-text">© 2026 Elevate Radio Worldwide. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Sticky Bottom Player -->
+  <div class="bottom-player">
+    <div class="bottom-player-info">
+      <div class="bottom-player-art">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="Now Playing">
+      </div>
+      <div class="bottom-player-text">
+        <p class="bottom-player-title">Elevate Radio</p>
+        <p class="bottom-player-subtitle">
+          <span class="bottom-player-live">
+            <span class="dot"></span>
+            LIVE
+          </span>
+          <span>• 24/7 Music</span>
+        </p>
+      </div>
+      <div class="equalizer paused" id="equalizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <button class="bottom-player-btn" id="bottomPlayBtn" aria-label="Play/Pause">
+      <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+  </div>
+
+  <audio id="radioStream" preload="none">
+    <source src="http://s2.radio.co/s10a9e6f11/listen" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Audio Player
+    const audio = document.getElementById('radioStream');
+    const bottomPlayBtn = document.getElementById('bottomPlayBtn');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+
+    function updatePlayState() {
+      if (isPlaying) {
+        bottomPlayBtn.classList.add('playing');
+        equalizer.classList.remove('paused');
+      } else {
+        bottomPlayBtn.classList.remove('playing');
+        equalizer.classList.add('paused');
+      }
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      isPlaying = !isPlaying;
+      updatePlayState();
+    }
+
+    bottomPlayBtn.addEventListener('click', togglePlay);
+
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      updatePlayState();
+    });
+
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      updatePlayState();
+    });
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      updatePlayState();
+    });
+  </script>
 </body>
 </html>

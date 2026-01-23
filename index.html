@@ -1,15 +1,20 @@
 <!--
   Elevate Radio - Worldwide
-  Updated: 2026-01-19
+  Updated: 2026-01-22
   Crisp modern podcast design inspired by PodSay
-  Features: Organic shapes, card layouts, episode system
+  Features: Organic shapes, card layouts, episode system, sticky bottom player
   Radio stream: radio.co (s2.radio.co/s10a9e6f11)
+  Changes: Added sticky bottom play bar, improved mobile responsiveness, app-like UX
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0B0E17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Elevate Radio | 24 HRS MUSIC • ZERO TALK</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +53,9 @@
       color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
+      padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -1236,6 +1244,424 @@
       }
     }
 
+    /* Sticky Bottom Player */
+    .bottom-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(21, 28, 44, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      padding: 12px 20px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .bottom-player-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bottom-player-art {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--bg-card);
+    }
+
+    .bottom-player-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bottom-player-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bottom-player-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bottom-player-subtitle {
+      font-size: 12px;
+      color: var(--gray-300);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bottom-player-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--pink-primary);
+      font-weight: 600;
+    }
+
+    .bottom-player-live .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--pink-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .bottom-player-btn {
+      width: 56px;
+      height: 56px;
+      background: var(--pink-primary);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px var(--pink-glow);
+    }
+
+    .bottom-player-btn:hover {
+      background: var(--pink-dark);
+      transform: scale(1.05);
+    }
+
+    .bottom-player-btn:active {
+      transform: scale(0.95);
+    }
+
+    .bottom-player-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: all 0.2s ease;
+    }
+
+    .bottom-player-btn .play-icon {
+      margin-left: 3px;
+    }
+
+    .bottom-player-btn .pause-icon {
+      display: none;
+    }
+
+    .bottom-player-btn.playing .play-icon {
+      display: none;
+    }
+
+    .bottom-player-btn.playing .pause-icon {
+      display: block;
+    }
+
+    /* Equalizer animation */
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .equalizer .bar {
+      width: 3px;
+      background: var(--pink-primary);
+      border-radius: 1px;
+      animation: equalize 0.8s ease-in-out infinite;
+    }
+
+    .equalizer .bar:nth-child(1) { height: 60%; animation-delay: 0s; }
+    .equalizer .bar:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+    .equalizer .bar:nth-child(3) { height: 40%; animation-delay: 0.4s; }
+    .equalizer .bar:nth-child(4) { height: 80%; animation-delay: 0.1s; }
+
+    .equalizer.paused .bar {
+      animation: none;
+      height: 30%;
+    }
+
+    @keyframes equalize {
+      0%, 100% { height: 30%; }
+      50% { height: 100%; }
+    }
+
+    /* Mobile-first app-like improvements */
+    @media (max-width: 768px) {
+      body {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      header {
+        padding: 12px 0;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        border-radius: 10px;
+      }
+
+      .logo-text {
+        font-size: 18px;
+      }
+
+      .hero {
+        padding: 100px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 32px;
+        letter-spacing: -1px;
+      }
+
+      .hero-desc {
+        font-size: 15px;
+        margin-bottom: 32px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      .hero-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hero-blob {
+        width: 280px;
+        height: 280px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .latest-episodes,
+      .featured-shows {
+        padding: 60px 0;
+      }
+
+      .episode-card {
+        border-radius: 16px;
+      }
+
+      .episode-image {
+        height: 160px;
+      }
+
+      .episode-content {
+        padding: 16px;
+      }
+
+      .episode-title {
+        font-size: 15px;
+      }
+
+      .show-card {
+        border-radius: 20px;
+      }
+
+      .show-image {
+        height: 180px;
+      }
+
+      .show-content {
+        padding: 20px;
+      }
+
+      .show-title {
+        font-size: 18px;
+      }
+
+      .listen-cta {
+        padding: 60px 0;
+      }
+
+      .cta-card {
+        padding: 32px 24px;
+        border-radius: 24px;
+      }
+
+      .cta-title {
+        font-size: 24px;
+      }
+
+      .cta-desc {
+        font-size: 14px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta-buttons .btn-white,
+      .cta-buttons .btn-outline-white {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      footer {
+        padding: 60px 0 40px;
+      }
+
+      .footer-brand p {
+        max-width: 100%;
+      }
+
+      .modal {
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 20px 20px 0 0;
+        margin-top: auto;
+      }
+
+      .modal-header {
+        height: 200px;
+      }
+
+      .modal-title {
+        font-size: 24px;
+      }
+
+      .modal-body {
+        padding: 24px 16px;
+        max-height: calc(100vh - 200px);
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .episode-item {
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .episode-thumb {
+        width: 56px;
+        height: 56px;
+      }
+
+      .episode-play-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      /* Hide header play button on mobile - use bottom player instead */
+      .nav-btn {
+        display: none;
+      }
+
+      /* Bottom player mobile adjustments */
+      .bottom-player {
+        padding: 10px 16px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .bottom-player-art {
+        width: 44px;
+        height: 44px;
+      }
+
+      .bottom-player-btn {
+        width: 52px;
+        height: 52px;
+      }
+
+      .bottom-player-btn svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 375px) {
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .cta-title {
+        font-size: 22px;
+      }
+
+      .bottom-player-title {
+        font-size: 13px;
+      }
+    }
+
+    /* Landscape orientation on mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        padding: 100px 0 40px;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .bottom-player {
+        padding: 8px 16px;
+      }
+
+      .bottom-player-art {
+        width: 40px;
+        height: 40px;
+      }
+
+      .bottom-player-btn {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    /* PWA / Full screen styles */
+    @media (display-mode: standalone) {
+      header {
+        padding-top: calc(20px + env(safe-area-inset-top, 0px));
+      }
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -1252,6 +1678,18 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: var(--pink-primary);
+    }
+
+    /* Disable scrollbars on mobile for cleaner look */
+    @media (max-width: 768px) {
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     }
   </style>
 </head>
@@ -1609,6 +2047,35 @@
     </div>
   </div>
 
+  <!-- Sticky Bottom Player -->
+  <div class="bottom-player">
+    <div class="bottom-player-info">
+      <div class="bottom-player-art">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" alt="Now Playing">
+      </div>
+      <div class="bottom-player-text">
+        <p class="bottom-player-title">Elevate Radio</p>
+        <p class="bottom-player-subtitle">
+          <span class="bottom-player-live">
+            <span class="dot"></span>
+            LIVE
+          </span>
+          <span>• 24/7 Music</span>
+        </p>
+      </div>
+      <div class="equalizer paused" id="equalizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <button class="bottom-player-btn" id="bottomPlayBtn" aria-label="Play/Pause">
+      <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+  </div>
+
   <audio id="radioStream" preload="none">
     <source src="http://s2.radio.co/s10a9e6f11/listen" type="audio/mpeg">
   </audio>
@@ -1661,7 +2128,44 @@
 
     // Audio Player
     const audio = document.getElementById('radioStream');
+    const bottomPlayBtn = document.getElementById('bottomPlayBtn');
+    const equalizer = document.getElementById('equalizer');
+    const mainPlayBtn = document.getElementById('mainPlayBtn');
+    const headerPlayBtn = document.getElementById('headerPlayBtn');
+    const ctaPlayBtn = document.getElementById('ctaPlayBtn');
     let isPlaying = false;
+
+    function updatePlayState() {
+      // Update bottom player button
+      if (isPlaying) {
+        bottomPlayBtn.classList.add('playing');
+        equalizer.classList.remove('paused');
+      } else {
+        bottomPlayBtn.classList.remove('playing');
+        equalizer.classList.add('paused');
+      }
+
+      // Update main button text
+      if (mainPlayBtn) {
+        mainPlayBtn.innerHTML = isPlaying 
+          ? '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> Now Playing'
+          : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Start Listening';
+      }
+
+      // Update header button
+      if (headerPlayBtn) {
+        headerPlayBtn.innerHTML = isPlaying
+          ? '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> Playing'
+          : '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Live';
+      }
+
+      // Update CTA button
+      if (ctaPlayBtn) {
+        ctaPlayBtn.innerHTML = isPlaying
+          ? '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> Now Playing'
+          : '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Start Listening';
+      }
+    }
 
     function togglePlay() {
       if (isPlaying) {
@@ -1670,13 +2174,36 @@
         audio.play();
       }
       isPlaying = !isPlaying;
+      updatePlayState();
     }
 
-    document.getElementById('mainPlayBtn').addEventListener('click', togglePlay);
-    document.getElementById('headerPlayBtn').addEventListener('click', togglePlay);
-    document.getElementById('ctaPlayBtn').addEventListener('click', (e) => {
-      e.preventDefault();
-      togglePlay();
+    // Bottom player (main control)
+    bottomPlayBtn.addEventListener('click', togglePlay);
+
+    // Other play buttons
+    if (mainPlayBtn) mainPlayBtn.addEventListener('click', togglePlay);
+    if (headerPlayBtn) headerPlayBtn.addEventListener('click', togglePlay);
+    if (ctaPlayBtn) {
+      ctaPlayBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        togglePlay();
+      });
+    }
+
+    // Handle audio events
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      updatePlayState();
+    });
+
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      updatePlayState();
+    });
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      updatePlayState();
     });
 
     // Modal
